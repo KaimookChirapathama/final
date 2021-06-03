@@ -4,24 +4,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Final</title>
+  <title>Chat App</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
-  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
 </head>
 
+
 <body>
-  <div class="sign-in-or-sign-out"></div>
- 
+  <div class="py-8 md:px-32 px-0 md:w-1/2 w-full mx-auto">
+    <!-- Title of the Signin page, this can just stay here as it'll be present both on signin page and chatroom browser page -->
+    <div class="flex items-center">
+      <div class="md:mx-0 mx-4"><span class="font-bold text-2xl bg-clip-text">Welcome to Chat App!</span></div>
+      <div class="ml-auto text-sm sign-in-or-sign-out"></div>
+    </div>
+  </div>
+
+
+<!-- 🔥🔥🔥Chatroom name submission form inserted from index.js 🔥🔥🔥-->
+      <div class=" md:px-16 px-0 md:w-1/2 w-full mx-auto">
+          <div class="submissionform">   <!-- use this class identifier for HTML insertion-->
+            <!-- sample HTML hardcoded here-->
+            <div>
+              <form class="w-full mt-8">
+                <input type="text" id="chatroomname" name="chatroomname" placeholder="Chatroom Name" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                <button id="submit-button" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">Join/Create</button>
+                <p>Enter the name of the chatroom you would like to join/create!</p>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+<!-- 🔥🔥🔥Chatrooms pulled from database and inserted from index.js 🔥🔥🔥-->
+    <div class="py-2 md:px-32 px-0 md:w-1/2 w-full mx-128">
+
+    <div class="chatrooms">   <!-- use this class identifier for HTML insertion-->
+      <!-- sample HTML hardcoded here-->
+      <div class="w-64 border-4 border-${borderColor}-900 p-4 my-4 text-left">
+        <div class="flex">
+          <div class="w-full">
+            <h2 class="text-2xl py-1">${Chatroom Name}<h2>
+          </div>
+        </div>
+        <div class="mt-4 flex">
+          <div class="w-full">
+            <div class="text-sm font-bold text-gray-600">Number of Users:</div>
+            <p>${number of users}</p>
+            <div class="text-sm font-bold text-gray-600">Number of Posts:</div>
+            <p>${number of posts}</p>
+          </div>
+        </div>
+      </div>
+        <!-- sample HTML hardcoded here-->
+        <div class="w-64 border-4 border-${borderColor}-900 p-4 my-4 text-left">
+          <div class="flex">
+            <div class="w-full">
+              <h2 class="text-2xl py-1">${Chatroom Name}<h2>
+            </div>
+          </div>
+          <div class="mt-4 flex">
+            <div class="w-full">
+              <div class="text-sm font-bold text-gray-600">Number of Users:</div>
+              <p>${number of users}</p>
+              <div class="text-sm font-bold text-gray-600">Number of Posts:</div>
+              <p>${number of posts}</p>
+            </div>
+          </div>
+        </div>
+          <!-- sample HTML hardcoded here-->
+          <div class="w-64 border-4 border-${borderColor}-900 p-4 my-4 text-left">
+            <div class="flex">
+              <div class="w-full">
+                <h2 class="text-2xl py-1">${Chatroom Name}<h2>
+              </div>
+            </div>
+            <div class="mt-4 flex">
+              <div class="w-full">
+                <div class="text-sm font-bold text-gray-600">Number of Users:</div>
+                <p>${number of users}</p>
+                <div class="text-sm font-bold text-gray-600">Number of Posts:</div>
+                <p>${number of posts}</p>
+              </div>
+            </div>
+          </div>
+
+
+
+  <!-- 🔥🔥🔥I'm not entirely sure but I think Firebase Authenticator lamba function provides a signout button but if it doesn't, then we'll build that feature here🔥🔥🔥-->
+
+
   <!-- Put the Firebase config here -->
   <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
-  <!-- Firebase Auth -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
+  <!-- FirebaseUI Auth -->
+  <!-- https://firebaseopensource.com/projects/firebase/firebaseui-web/ -->
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
 
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {} // replace
+    
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
