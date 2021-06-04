@@ -13,15 +13,13 @@
 <body>
 
 <!-- 🔥🔥🔥Chatroom title can most likely be populated from the URL parameters🔥🔥🔥-->
-  <div class="py-8 md:px-32 px-0 md:w-1/2 w-full mx-auto">
-    <!-- Title of the Chatroom you're in -->
-    <div class="flex items-center">
-        <div class="Title">
-            <div class="md:mx-0 mx-4"><span class="font-bold text-2xl bg-clip-text">${chatroom title}</span></div>
-            <div class="ml-auto text-sm sign-in-or-sign-out"></div>
-        </div>
-    </div>
+<div class="py-8 md:px-32 px-0 md:w-1/2 w-full mx-auto">
+  <!-- Title of the Signin page, this can just stay here as it'll be present both on signin page and chatroom browser page -->
+  <div class="flex items-center">
+    <div class="md:mx-0 mx-4"><span class="font-bold text-2xl bg-clip-text">$[chatroom title}</span></div>
+    <div class="ml-auto text-sm sign-in-or-sign-out"></div>
   </div>
+</div>
 
 <!-- 🔥🔥🔥Chat messages will be populated using information from database, chatroom.js 🔥🔥🔥-->
     <div class="messages">   <!-- use this class identifier for HTML insertion-->
@@ -49,30 +47,38 @@
         </div>
     </div>
 
-
-      <!-- 🔥🔥🔥I'm not entirely sure but I think Firebase Authenticator lamba function provides a signout button but if it doesn't, then we'll build that feature here🔥🔥🔥-->
+    <div class="Return"> 
+      <div class="py-8 md:px-32 px-0 md:w-1/2 w-full mx-auto text-blue-500">
+      <a href="Index.html">Return to Chatroom Browser</a></li>
+      </div>  
+    </div>
+   
 
 
   <!-- Put the Firebase config here -->
   <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
 
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-      https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+     <!-- The Firebase Authentication module -->
+     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+     <!-- FirebaseUI Auth -->
+     <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
 
-  <!-- FirebaseUI Auth -->
-  <!-- https://firebaseopensource.com/projects/firebase/firebaseui-web/ -->
-  <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
-
-  <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {} // replace
-    
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-  </script>
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCikRjGgOepS60l87kxfGTXZc0Qflkwc5A",
+    authDomain: "kiei-451-9051a.firebaseapp.com",
+    projectId: "kiei-451-9051a",
+    storageBucket: "kiei-451-9051a.appspot.com",
+    messagingSenderId: "355313524263",
+    appId: "1:355313524263:web:770685261f49bfd567f802"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
   <script src="chatroom.js"></script>
 </body>
 
