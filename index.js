@@ -2,7 +2,6 @@
 firebase.auth().onAuthStateChanged(async function(user) {
   if (user) {
 
-
     // Signed in
     console.log(user)
 
@@ -29,8 +28,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
       <div>
         <form class="w-full mt-8">
           <input type="text" id="chatroomname" name="chatroomname" placeholder="Chatroom Name" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
-          <button id="submit-button" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">Join/Create</button>
-          <p>Enter the name of the chatroom you would like to join/create!</p>
+          <button id="submit-button" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">Create New</button>
+          <p>Click on a chatroom to Join, or Create a new one!</p>
         </form>
         </div>
       </div>
@@ -38,7 +37,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
     // 🔥🔥🔥Populate Submission form for signed-in users ends here🔥🔥🔥
 
     // 🔥🔥🔥Query Database structure to pull information for use in populating chatroom browser list🔥🔥🔥
-  
         // Build the URL for our chatroomdata API
         let url = `/.netlify/functions/chatroomdata`
         // Fetch the url, wait for a response, store the response in memory
@@ -47,67 +45,42 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let json = await response.json()
         // Write the json-formatted data to the console in Chrome
         console.log(json)
-
     // 🔥🔥🔥Query Database structure to pull information for use in populating chatroom browser list ends here🔥🔥🔥
 
 
-    // 🔥🔥🔥Populate dummy chatroom HTML for signed-in users🔥🔥🔥
-    // this will be updated later with live info pulled from database
-      //Grab a reference to the element with class name "posts" in memory
-      let chatDiv = document.querySelector(`.chatrooms`)
-      //insert HTML for submission form into page for signed in user 
-     chatDiv.insertAdjacentHTML(`beforeend`, `
-     <div class="py-2 md:px-32 px-0 md:w-1/2 w-full mx-128">
-    <!-- Chatroom 1-->
-      <div class="w-64 border-4 border-borderColor-900 p-4 my-4 text-left">
-        <div class="flex">
-          <div class="w-full">
-            <h2 class="text-2xl py-1">$Chatroom Name<h2>
-          </div>
-        </div>
-        <div class="mt-4 flex">
-          <div class="w-full">
-            <div class="text-sm font-bold text-gray-600">Number of Users:</div>
-            <p>$number of users</p>
-            <div class="text-sm font-bold text-gray-600">Number of Posts:</div>
-            <p>$number of posts</p>
-          </div>
-        </div>
-      </div>
-        <!-- Chatroom 2-->
-        <div class="w-64 border-4 border-borderColor-900 p-4 my-4 text-left">
-          <div class="flex">
-            <div class="w-full">
-              <h2 class="text-2xl py-1">$Chatroom Name<h2>
-            </div>
-          </div>
-          <div class="mt-4 flex">
-            <div class="w-full">
-              <div class="text-sm font-bold text-gray-600">Number of Users:</div>
-              <p>$number of users</p>
-              <div class="text-sm font-bold text-gray-600">Number of Posts:</div>
-              <p>$number of posts</p>
-            </div>
-          </div>
-        </div>
-          <!-- Chatroom 3-->
-          <div class="w-64 border-4 border-borderColor-900 p-4 my-4 text-left">
-            <div class="flex">
-              <div class="w-full">
-                <h2 class="text-2xl py-1">$Chatroom Name<h2>
+    // 🔥🔥🔥Populate chatroom HTML for signed-in users🔥🔥🔥
+        //loop through the chatroom data
+        for (let i=0; i < json.length; i++ ){
+        //Declare variable for the Rider First Name
+        let chatroomName = json[i].roomName
+        //Declare variable for the Rider First Name
+        let numberOfUsers = json[i].numberOfUsers
+        //Declare variable for the Phone Number
+        let numberOfPosts = json[i].numberOfPosts
+        //insert HTML for chatroom information into the page
+        //Grab a reference to the element with class name "posts" in memory
+        let chatDiv = document.querySelector(`.chatrooms`)
+        //insert HTML for submission form into page for signed in user 
+          chatDiv.insertAdjacentHTML(`beforeend`, `
+          <div class="py-2 md:px-32 px-0 md:w-1/2 w-full mx-128">
+            <div class="w-64 border-4 border-borderColor-900 p-4 my-4 text-left">
+              <div class="flex">
+                <div class="w-full">
+                  <h2 class="text-2xl py-1 text-blue-500 underline"><a href="chatroom.html?chatroomname=${chatroomName}">${chatroomName}</a><h2>
+                </div>
+              </div>
+              <div class="mt-4 flex">
+                <div class="w-full">
+                  <div class="text-sm font-bold text-gray-600">Number of Users:</div>
+                  <p>${numberOfUsers}</p>
+                  <div class="text-sm font-bold text-gray-600">Number of Posts:</div>
+                  <p>${numberOfPosts}</p>
+                </div>
               </div>
             </div>
-            <div class="mt-4 flex">
-              <div class="w-full">
-                <div class="text-sm font-bold text-gray-600">Number of Users:</div>
-                <p>$number of users</p>
-                <div class="text-sm font-bold text-gray-600">Number of Posts:</div>
-                <p>$number of posts</p>
-              </div>
-            </div>
-      
-       `)
-    // 🔥🔥🔥Populate Dummy Chatroom HTML for signed-in users ends here🔥🔥🔥
+            `)
+          }
+    // 🔥🔥🔥Populate Chatroom HTML for signed-in users ends here🔥🔥🔥
 
 
 
@@ -120,6 +93,10 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
 
 
+
+
+
+    
 
 
 } else {
