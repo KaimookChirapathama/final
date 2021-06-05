@@ -1,8 +1,5 @@
 // Goal: Provide a function to return all posts and their comments from Firebase.
 
-
-//let url = `/.netlify/functions/messages?chatroomname=${chatroomName}`
-
 // allows us to use firebase
 let firebase = require(`./firebase`)
 // /.netlify/functions/posts
@@ -15,15 +12,13 @@ exports.handler = async function(event) {
   //Get the chatroom name from the querystring parameter
   let chatroomName = event.queryStringParameters.chatroomname
 
-  console.log(chatroomName)
-
-  // perform a query against firestore for all posts, wait for it to return, store in memory
+  // perform a query against firestore for all messages from our particular chatroom, wait for it to return, store in memory
   let messagesQuery = await db.collection(`messages`).where('chatroom', '==', chatroomName).get()
 
   // retrieve the documents from the query
   let messages = messagesQuery.docs
 
-  // loop through the post documents
+  // loop through the messages documents
   for (let i=0; i < messages.length; i++) {
     // get the id from the document
     let messageId = messages[i].id
@@ -40,7 +35,6 @@ exports.handler = async function(event) {
     // add the Object to the return value
     returnValue.push(messagesObject)
   }
-
   // return value of our lambda
   return {
     statusCode: 200,

@@ -2,9 +2,6 @@
 firebase.auth().onAuthStateChanged(async function(user) {
   if (user) {
 
-    // Signed in
-    console.log(user)
-
     // 🔥🔥🔥Signout Button starts here🔥🔥🔥
     // Build the markup for the sign-out button and set the HTML in the header
     document.querySelector(`.sign-in-or-sign-out`).innerHTML = `
@@ -44,7 +41,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         // Ask for the json-formatted data from the response, wait for the data, store it in memory
         let json = await response.json()
         // Write the json-formatted data to the console in Chrome
-        console.log(json)
+        //console.log(json)
     // 🔥🔥🔥Query Database structure to pull information for use in populating chatroom browser list ends here🔥🔥🔥
 
 
@@ -84,6 +81,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
 
     // 🔥🔥🔥Create new chatroom functionality starts here🔥🔥🔥
+    // 🔥🔥🔥Known Issue: it's possisble to keep making new rooms with the same exact title, this will need to be fixed with an if statement🔥🔥🔥
       // When the "Create New" button is clicked:
       document.getElementById("submit-button").addEventListener(`click`, function(event) {
         // - Ignore the default behavior of the button
@@ -97,11 +95,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
           // - Construct a URL to send user to new chatroom
           // Build the URL for our create new chatroom API
           let url = `/.netlify/functions/createroom?chatroomname=${newChatroomName}`
-          console.log(url)
+          //console.log(url)
           // Fetch the url, wait for a response, store the response in memory
           let response = fetch(url)
           // refresh the page
-          location.reload()
+          location.replace(`chatroom.html?chatroomname=${newChatroomName}`)
         }})
     // 🔥🔥🔥Create new chatroom functionality starts here🔥🔥🔥
 
