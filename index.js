@@ -47,7 +47,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let json = await response.json()
         // Write the json-formatted data to the console in Chrome
         console.log(json)
-        
+
     // 🔥🔥🔥Query Database structure to pull information for use in populating chatroom browser list ends here🔥🔥🔥
 
 

@@ -16,24 +16,21 @@ exports.handler = async function(event) {
 
   // retrieve the documents from the query
   let chatrooms = chatroomsQuery.docs
-
+ 
   // loop through the chatroom documents
   for (let i=0; i < i.length; i++) {
-
-    // get the id from the document
-    let chatroomId = chatrooms[i].id
 
     // get the data from the document
     let chatroomData = chatrooms[i].data()
 
     // create an Object to be added to the return value of our lambda
     let chatroomObject = {
-      id: chatroomId,
-      chatroomName: chatroomData
+      chatroomName: chatroomData.roomName
     }
   
     // add the Object to the return value
-    returnValue.chatrooms.push(chatroomObject)
+    returnValue.push(chatroomObject)
+  
   }
 
   // return value of our lambda
