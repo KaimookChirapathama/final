@@ -51,11 +51,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
     // 🔥🔥🔥Populate chatroom HTML for signed-in users🔥🔥🔥
         //loop through the chatroom data
         for (let i=0; i < json.length; i++ ){
-        //Declare variable for the Rider First Name
+        //Declare variable for the chatroom name
         let chatroomName = json[i].roomName
-        //Declare variable for the Rider First Name
+        //Declare variable for the number of users
         let numberOfUsers = json[i].numberOfUsers
-        //Declare variable for the Phone Number
+        //Declare variable for the number of posts
         let numberOfPosts = json[i].numberOfPosts
         //insert HTML for chatroom information into the page
         //Grab a reference to the element with class name "posts" in memory
@@ -83,6 +83,27 @@ firebase.auth().onAuthStateChanged(async function(user) {
     // 🔥🔥🔥Populate Chatroom HTML for signed-in users ends here🔥🔥🔥
 
 
+    // 🔥🔥🔥Create new chatroom functionality starts here🔥🔥🔥
+      // When the "Create New" button is clicked:
+      document.getElementById("submit-button").addEventListener(`click`, function(event) {
+        // - Ignore the default behavior of the button
+        event.preventDefault()
+        // - Get a reference to the element containing the user-entered new chatroom Name
+        let chatroomNameInput = document.querySelector(`#chatroomname`)
+        // - Get the user-entered name from the element's value
+        let newChatroomName = chatroomNameInput.value
+        // - Check to see if the user entered anything; if so:
+        if (newChatroomName.length > 0) {
+          // - Construct a URL to send user to new chatroom
+          // Build the URL for our create new chatroom API
+          let url = `/.netlify/functions/createroom?chatroomname=${newChatroomName}`
+          console.log(url)
+          // Fetch the url, wait for a response, store the response in memory
+          let response = fetch(url)
+          // refresh the page
+          location.reload()
+        }})
+    // 🔥🔥🔥Create new chatroom functionality starts here🔥🔥🔥
 
 
 
@@ -96,7 +117,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
 
 
-    
 
 
 } else {
