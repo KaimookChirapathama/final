@@ -39,7 +39,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
     // 🔥🔥🔥Query Database structure to pull information for use in populating chatroom browser list🔥🔥🔥
   
-        // Build the URL for our posts API
+        // Build the URL for our chatroomdata API
         let url = `/.netlify/functions/chatroomdata`
         // Fetch the url, wait for a response, store the response in memory
         let response = await fetch(url)
@@ -100,7 +100,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
             <div class="mt-4 flex">
               <div class="w-full">
                 <div class="text-sm font-bold text-gray-600">Number of Users:</div>
-                <p>4number of users</p>
+                <p>$number of users</p>
                 <div class="text-sm font-bold text-gray-600">Number of Posts:</div>
                 <p>$number of posts</p>
               </div>
