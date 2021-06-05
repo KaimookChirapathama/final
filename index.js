@@ -37,7 +37,18 @@ firebase.auth().onAuthStateChanged(async function(user) {
        `)
     // 🔥🔥🔥Populate Submission form for signed-in users ends here🔥🔥🔥
 
-
+    // 🔥🔥🔥Query Database structure to pull information for use in populating chatroom browser list🔥🔥🔥
+  
+        // Build the URL for our posts API
+        let url = `/.netlify/functions/chatroomdata`
+        // Fetch the url, wait for a response, store the response in memory
+        let response = await fetch(url)
+        // Ask for the json-formatted data from the response, wait for the data, store it in memory
+        let json = await response.json()
+        // Write the json-formatted data to the console in Chrome
+        console.log(json)
+        
+    // 🔥🔥🔥Query Database structure to pull information for use in populating chatroom browser list ends here🔥🔥🔥
 
 
     // 🔥🔥🔥Populate dummy chatroom HTML for signed-in users🔥🔥🔥
@@ -110,7 +121,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
 
 
-    
+
 } else {
   // 🔥🔥🔥Show Sign-in🔥🔥🔥
   // Initializes FirebaseUI Auth
