@@ -8,13 +8,10 @@ exports.handler = async function(event) {
   let returnValue = []
   // establish a connection to firebase in memory
   let db = firebase.firestore()
-
   //Get the chatroom name from the querystring parameter
   let chatroomName = event.queryStringParameters.chatroomname
-
   // perform a query against firestore for all messages from our particular chatroom, wait for it to return, store in memory
   let messagesQuery = await db.collection(`messages`).where('chatroom', '==', chatroomName).get()
-
   // retrieve the documents from the query
   let messages = messagesQuery.docs
 
@@ -32,8 +29,14 @@ exports.handler = async function(event) {
       time: messageData.time,
       userName: messageData.userName
     }
+   
+  
     // add the Object to the return value
     returnValue.push(messagesObject)
+    
+    //sorts returnValue so messages will populate in order on page
+    returnValue.sort((firstItem, secondItem) => firstItem.time - secondItem.time)
+   
   }
   // return value of our lambda
   return {

@@ -12,8 +12,7 @@ exports.handler = async function(event) {
 
   // create a new chatroom
   await db.collection(`chatrooms`).add({
-    roomName: newChatroomName,
-    numberOfPosts: 0
+    roomName: newChatroomName
   })
 
   return {
