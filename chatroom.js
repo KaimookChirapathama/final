@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
   let titleDiv = document.querySelector(`.roomTitle`)
         //insert HTML for submission form into page for signed in user 
           titleDiv.insertAdjacentHTML(`beforeend`, `
-          <div class="py-8 px-8 md:px-8 py-8 md:w-1/2 w-full mx-auto  text-center text-purple-500">
+          <div class="py-8 px-8 md:px-8 py-8 md:w-1/2 w-full mx-auto text-3xl text-center text-purple-500">
     
     <div class="md:mx-0 mx-4"><span class="font-bold text-2xl bg-clip-text">${chatroomName}</span></div>
             `)
