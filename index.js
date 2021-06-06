@@ -88,6 +88,9 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let newChatroomName = chatroomNameInput.value
         // - Check to see if the user entered anything; if so:
         if (newChatroomName.length > 0) {
+
+          //checks to see if the room already exists
+          if(window.find(newChatroomName) == false){         
           // - Construct a URL to send user to new chatroom
           // Build the URL for our create new chatroom API
           let url = `/.netlify/functions/createroom?chatroomname=${newChatroomName}`
@@ -96,22 +99,21 @@ firebase.auth().onAuthStateChanged(async function(user) {
           let response = fetch(url)
           // refresh the page
           location.replace(`chatroom.html?chatroomname=${newChatroomName}`)
-        }})
-    // 🔥🔥🔥Create new chatroom functionality starts here🔥🔥🔥
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          //what to do if the typed in room already exists
+          } 
+        
+        else{
+          //Quick little function to deselect all text so that user cannot bypass my create chatroom blocking mechanism
+          {if (window.getSelection) {window.getSelection().removeAllRanges();}
+           else if (document.selection) {document.selection.empty();}}
+          //Lets the user know that the chatroom already exists
+          alert(`That chatroom already exists! Click the title to Join it!`)
+        }
+      }
+      //lets the user know that we're sad they didn't type anything
+      else {alert(`You didn't type anything :(`)}
+    })
+    // 🔥🔥🔥Create new chatroom functionality ends here🔥🔥🔥
 
 } else {
   // 🔥🔥🔥Show Sign-in🔥🔥🔥

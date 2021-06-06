@@ -29,14 +29,10 @@ exports.handler = async function(event) {
       time: messageData.time,
       userName: messageData.userName
     }
-   
-  
     // add the Object to the return value
     returnValue.push(messagesObject)
-    
     //sorts returnValue so messages will populate in order on page
     returnValue.sort((firstItem, secondItem) => firstItem.time - secondItem.time)
-   
   }
   // return value of our lambda
   return {

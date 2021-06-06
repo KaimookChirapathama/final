@@ -20,6 +20,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
   // defines a lambda function
   let params = (new URL(document.location)).searchParams;
   let chatroomName = params.get("chatroomname");
+  //redirect user back to chatroom browser list if they try to be sneaky and go straight to chatroom.html
+  if (chatroomName == null){document.location.href = `index.html`}
   let titleDiv = document.querySelector(`.roomTitle`)
         //insert HTML for submission form into page for signed in user 
           titleDiv.insertAdjacentHTML(`beforeend`, `
@@ -37,7 +39,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         // Ask for the json-formatted data from the response, wait for the data, store it in memory
         let json = await response.json()
         // Write the json-formatted data to the console in Chrome
-        console.log(json)
+        //console.log(json)
     // 🔥🔥🔥Query Database structure to pull information for use in populating chatroom messages ends here🔥🔥🔥
 
     // 🔥🔥🔥Populate chatroom messages from JSON🔥🔥🔥
@@ -90,11 +92,10 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let response = fetch(url)
         // refresh the page
         location.reload()
-      }})
+        //lets the user know we're sad that they didn't type anything
+      } else {alert(`You didn't type anything :(`)}
+    })
     // 🔥🔥🔥Create a new chat function ends here🔥🔥🔥
-
-
-  
     } else {
       // user is not logged-in, so redirect to home screen
       document.location.href = `index.html`
