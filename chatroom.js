@@ -70,39 +70,34 @@ firebase.auth().onAuthStateChanged(async function(user) {
             <p>${userName} @ (${date} ${timeStamp}) said: ${messageBody}</p>
               `)
             }
-      // 🔥🔥🔥Populate Chatroom messages from JSON ends here🔥🔥🔥
+    // 🔥🔥🔥Populate Chatroom messages from JSON ends here🔥🔥🔥
 
-
-
+    // 🔥🔥🔥Create a new chat function starts here🔥🔥🔥
+    // /.netlify/functions/createchat?userName=xxxxxxxxx&body=dogsaresocute&chatroomname=dogs
+      document.getElementById("comment-button").addEventListener(`click`, function(event) {
+      // - Ignore the default behavior of the button
+      event.preventDefault()
+      // - Get a reference to the element containing the user-entered new chatroom Name
+      let bodyInput = document.querySelector(`#comment`)
+      // - Get the user-entered name from the element's value
+      let body = bodyInput.value
+      // - Check to see if the user entered anything; if so:
+      if (body.length > 0) {
+        // - Construct a URL to create new chat and reload page
+        // Build the URL for our create new chatroom API
+        let url = `/.netlify/functions/createchat?userName=${user.displayName}&body=${body}&chatroomname=${chatroomName}`
+        // Fetch the url, wait for a response, store the response in memory
+        let response = fetch(url)
+        // refresh the page
+        location.reload()
+      }})
+    // 🔥🔥🔥Create a new chat function ends here🔥🔥🔥
 
 
   
-      
-// Pretty much all the chatroom database grabbing will appear here
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     } else {
       // user is not logged-in, so redirect to home screen
-      // 🔥🔥🔥🔥🔥🔥UNCOMMENT NEXT LINE AFTER PRODUCT IS FINISHED! WE DON'T WANT PEOPLE IN CHATROOM THAT ARE NOT SIGNED IN🔥🔥🔥🔥🔥🔥
-      //document.location.href = `index.html`
+      document.location.href = `index.html`
     }
     })
   

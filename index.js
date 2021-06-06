@@ -50,8 +50,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
         for (let i=0; i < json.length; i++ ){
         //Declare variable for the chatroom name
         let chatroomName = json[i].roomName
-        //Declare variable for the number of users
-        let numberOfUsers = json[i].numberOfUsers
         //Declare variable for the number of posts
         let numberOfPosts = json[i].numberOfPosts
         //insert HTML for chatroom information into the page
@@ -68,8 +66,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
               </div>
               <div class="mt-4 flex">
                 <div class="w-full">
-                  <div class="text-sm font-bold text-gray-600">Number of Users:</div>
-                  <p>${numberOfUsers}</p>
                   <div class="text-sm font-bold text-gray-600">Number of Posts:</div>
                   <p>${numberOfPosts}</p>
                 </div>

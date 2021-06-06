@@ -3,10 +3,11 @@
 // allows us to use firebase
 let firebase = require(`./firebase`)
 
-// /.netlify/functions/create_comment?postId=xxxxxxxxx&userName=Brian&body=Tacos!
+// /.netlify/functions/createchat?userName=xxxxxxxxx&body=dogsaresocute&chatroomname=dogs
+
 exports.handler = async function(event) {
   // get the three querystring parameters and store in memory
-  let postId = event.queryStringParameters.postId
+  let chatroomName = event.queryStringParameters.chatroomname
   let userName = event.queryStringParameters.userName
   let body = event.queryStringParameters.body
 
@@ -14,11 +15,11 @@ exports.handler = async function(event) {
   let db = firebase.firestore()
 
   // create a new post, wait for it to return
-  await db.collection(`comments`).add({
-    postId: postId,
+  await db.collection(`messages`).add({
+    chatroom: chatroomName,
     userName: userName,
     body: body,
-    created: firebase.firestore.FieldValue.serverTimestamp()
+    time: firebase.firestore.FieldValue.serverTimestamp()
   })
 
   return {
