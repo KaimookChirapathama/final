@@ -90,8 +90,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let url = `/.netlify/functions/createchat?userName=${user.displayName}&body=${body}&chatroomname=${chatroomName}`
         // Fetch the url, wait for a response, store the response in memory
         let response = fetch(url)
-        // refresh the page
-        location.reload()
+        // refresh the page with a 1 second delay to avoid beating the database update
+        setTimeout(() => {location.reload()}, 1000);
         //lets the user know we're sad that they didn't type anything
       } else {alert(`You didn't type anything :(`)}
     })
