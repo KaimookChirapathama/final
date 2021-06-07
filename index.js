@@ -21,12 +21,12 @@ firebase.auth().onAuthStateChanged(async function(user) {
      let formDiv = document.querySelector(`.submissionform`)
       //insert HTML for submission form into page for signed in user 
      formDiv.insertAdjacentHTML(`beforeend`, `
-      <div class=" md:px-16 px-0 md:w-1/2 w-full mx-auto">
+      <div class=" md:px-16 md:w-1/2 w-full mx-auto">
       <div>
         <form class="w-full mt-8">
-          <input type="text" id="chatroomname" name="chatroomname" placeholder="Chatroom Name" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          <input type="text" id="chatroomname" name="chatroomname" placeholder="Chatroom Name" class="ml-16 my-4 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
           <button id="submit-button" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">Create New</button>
-          <p>Click on a chatroom to Join, or Create a new one!</p>
+          <p class="ml-16">Click on a chatroom to Join, or Create a new one!</p>
         </form>
         </div>
       </div>
@@ -57,8 +57,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let chatDiv = document.querySelector(`.chatrooms`)
         //insert HTML for submission form into page for signed in user 
           chatDiv.insertAdjacentHTML(`beforeend`, `
-          <div class="py-2 md:px-32 px-0 md:w-1/2 w-full mx-128">
-            <div class="w-64 border-4 border-borderColor-900 p-4 my-4 text-left">
+          <div class="py-2 md:px-32 px-8 md:w-1/2 w-full mx-128">
+            <div class="w-64 border-4 border-purple-500 bg-green-100 p-4 my-4 text-left">
               <div class="flex">
                 <div class="w-full">
                   <h2 class="text-2xl py-1 text-blue-500 underline"><a href="chatroom.html?chatroomname=${chatroomName}">${chatroomName}</a><h2>
