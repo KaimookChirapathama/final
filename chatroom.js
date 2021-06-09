@@ -5,7 +5,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
       // 🔥🔥🔥Signout Button starts here🔥🔥🔥
     // Build the markup for the sign-out button and set the HTML in the header
     document.querySelector(`.sign-in-or-sign-out`).innerHTML = `
-    <button class="text-purple-500 underline sign-out">Sign Out</button>`
+    <button class="text-pink-500 underline sign-out">Sign Out</button>`
   // get a reference to the sign out button
   let signOutButton = document.querySelector(`.sign-out`)
   // handle the sign out button click
@@ -25,7 +25,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
   let titleDiv = document.querySelector(`.roomTitle`)
         //insert HTML for submission form into page for signed in user 
           titleDiv.insertAdjacentHTML(`beforeend`, `
-          <div class="py-8 px-8 md:px-8 py-8 md:w-1/2 w-full mx-auto text-center text-purple-500">
+          <div class="py-8 px-8 md:px-8 py-8 md:w-1/2 w-full mx-auto text-center text-blue-500">
     
     <div class="md:mx-0 mx-4"><span class="font-bold text-4xl bg-clip-text">${chatroomName}</span></div>
             `)
@@ -69,7 +69,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
           let messageDiv = document.querySelector(`.messages`)
           //insert HTML for submission form into page for signed in user 
             messageDiv.insertAdjacentHTML(`beforeend`, `
-            <p>${userName} @ (${date} ${timeStamp}) said: ${messageBody}</p>
+            <p class="font-light mt-4 text-gray-800"> ${userName} @ (${date} ${timeStamp}) said:</p> 
+            <p2 class="font-semibold mt-4 text-blue-600">${messageBody}
               `)
             }
     // 🔥🔥🔥Populate Chatroom messages from JSON ends here🔥🔥🔥
