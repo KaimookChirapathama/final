@@ -59,8 +59,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let chatDiv = document.querySelector(`.chatrooms`)
         //insert HTML for submission form into page for signed in user 
           chatDiv.insertAdjacentHTML(`beforeend`, `
-          <div class="py-2 md:px-32 px-8 md:w-1/2 w-full mx-128">
-            <div class="w-300 border-2 border-blue-300 bg-green-50 p-4 my-4 text-left">
+          <div class="w-1/2 py-2 md:w-1/2 w-full mx-auto">
+            <div class="w-300 border-2 border-blue-300 bg-green-50 p-4 my-4 text-center">
               <div class="flex">
                 <div class="w-full">
                   <h2 class="text-2xl py-1 font-bold text-blue-500 underline"><a href="chatroom.html?chatroomname=${chatroomName}">${chatroomName}</a><h2>
