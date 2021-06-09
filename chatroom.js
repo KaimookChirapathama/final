@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
           titleDiv.insertAdjacentHTML(`beforeend`, `
           <div class="py-8 px-8 md:px-8 py-8 md:w-1/2 w-full mx-auto text-center text-blue-500">
     
-    <div class="md:mx-0 mx-4"><span class="font-bold text-4xl bg-clip-text">${chatroomName}</span></div>
+    <div class="md:mx-0 mx-4"><span class="font-bold text-4xl bg-clip-text">${chatroomName} Chatroom </span></div>
             `)
   // 🔥🔥🔥Populate chatroom title from query string parameters🔥🔥🔥
 
