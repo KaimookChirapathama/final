@@ -63,7 +63,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
             <div class="w-300 border-2 border-blue-300 bg-green-50 p-4 my-4 text-center">
               <div class="flex">
                 <div class="w-full">
-                  <h2 class="text-2xl py-1 font-bold text-blue-500 underline"><a href="chatroom.html?chatroomname=${chatroomName}">${chatroomName}</a><h2>
+                  <h2 class="text-2xl py-1 font-bold text-blue-500 underline"><a href="chatroom.html?chatroomname=${chatroomName}">${chatroomName} Chatroom</a><h2>
                 </div>
               </div>
               <div class="mt-4 flex">
