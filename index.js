@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
     // 🔥🔥🔥Signout Button ends here🔥🔥🔥
 
     // 🔥🔥🔥Populate Submission form for signed-in users🔥🔥🔥
-      //Grab a reference to the element with class name "posts" in memory
+      //Grab a reference to the element with class name "submissionform" in memory
      let formDiv = document.querySelector(`.submissionform`)
       //insert HTML for submission form into page for signed in user 
      formDiv.insertAdjacentHTML(`beforeend`, `
@@ -41,13 +41,10 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let response = await fetch(url)
         // Ask for the json-formatted data from the response, wait for the data, store it in memory
         let json = await response.json()
-        // Write the json-formatted data to the console in Chrome
-        //console.log(json)
     // 🔥🔥🔥Query Database structure to pull information for use in populating chatroom browser list ends here🔥🔥🔥
 
 
     // 🔥🔥🔥Populate chatroom HTML for signed-in users🔥🔥🔥
-        
     //loop through the chatroom data
         for (let i=0; i < json.length; i++ ){
         //Declare variable for the chatroom name
@@ -55,7 +52,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         //Declare variable for the number of posts
         let numberOfPosts = json[i].numberOfPosts
         //insert HTML for chatroom information into the page
-        //Grab a reference to the element with class name "posts" in memory
+        //Grab a reference to the element with class name "chatrooms" in memory
         let chatDiv = document.querySelector(`.chatrooms`)
         //insert HTML for submission form into page for signed in user 
           chatDiv.insertAdjacentHTML(`beforeend`, `
@@ -77,9 +74,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
           }
     // 🔥🔥🔥Populate Chatroom HTML for signed-in users ends here🔥🔥🔥
 
-
     // 🔥🔥🔥Create new chatroom functionality starts here🔥🔥🔥
-    // 🔥🔥🔥Known Issue: it's possisble to keep making new rooms with the same exact title, this will need to be fixed with an if statement🔥🔥🔥
       // When the "Create New" button is clicked:
       document.getElementById("submit-button").addEventListener(`click`, function(event) {
         // - Ignore the default behavior of the button
@@ -103,7 +98,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
           location.replace(`chatroom.html?chatroomname=${newChatroomName}`)
           //what to do if the typed in room already exists
           } 
-        
         else{
           //Quick little function to deselect all text so that user cannot bypass my create chatroom blocking mechanism
           {if (window.getSelection) {window.getSelection().removeAllRanges();}

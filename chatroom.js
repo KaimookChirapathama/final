@@ -39,8 +39,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let response = await fetch(url)
         // Ask for the json-formatted data from the response, wait for the data, store it in memory
         let json = await response.json()
-        // Write the json-formatted data to the console in Chrome
-        //console.log(json)
     // 🔥🔥🔥Query Database structure to pull information for use in populating chatroom messages ends here🔥🔥🔥
 
     // 🔥🔥🔥Populate chatroom messages from JSON🔥🔥🔥
@@ -66,7 +64,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
           //Declare variable for the message body
           let messageBody = json[i].body
           //insert HTML for chatroom information into the page
-          //Grab a reference to the element with class name "posts" in memory
+          //Grab a reference to the element with class name "messages" in memory
           let messageDiv = document.querySelector(`.messages`)
           //insert HTML for submission form into page for signed in user 
             messageDiv.insertAdjacentHTML(`beforeend`, `
@@ -81,9 +79,9 @@ firebase.auth().onAuthStateChanged(async function(user) {
       document.getElementById("comment-button").addEventListener(`click`, function(event) {
       // - Ignore the default behavior of the button
       event.preventDefault()
-      // - Get a reference to the element containing the user-entered new chatroom Name
+      // - Get a reference to the element containing the user-entered comment
       let bodyInput = document.querySelector(`#comment`)
-      // - Get the user-entered name from the element's value
+      // - Get the user-entered comment from the element's value
       let body = bodyInput.value
       // - Check to see if the user entered anything; if so:
       if (body.length > 0) {

@@ -1,14 +1,14 @@
-// Goal: Provide a function to return all posts and their comments from Firebase.
+// Goal: Provide a function to return chatroom data from Firebase.
 
 // allows us to use firebase
 let firebase = require(`./firebase`)
-// /.netlify/functions/posts
+
 exports.handler = async function(event) {
   // define an empty Array to hold the return value from our lambda
   let returnValue = []
   // establish a connection to firebase in memory
   let db = firebase.firestore()
-  // perform a query against firestore for all posts, wait for it to return, store in memory
+  // perform a query against firestore for chatrooms, wait for it to return, store in memory
   let chatroomsQuery = await db.collection(`chatrooms`).get()
 
   // retrieve the documents from the query

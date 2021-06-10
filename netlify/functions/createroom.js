@@ -1,4 +1,4 @@
-// Goal: Provide a function to create a new post in Firebase
+// Goal: Provide a function to create a new chatroom in Firebase
 
 // allows us to use firebase
 let firebase = require(`./firebase`)
